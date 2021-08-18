@@ -1,0 +1,16 @@
+server side : npm init
+              npm install --save cors nodemon express socket.io
+              socket.io for live data transfer
+
+client side : npx create-react-app ./
+              npm install --save react-router-dom socket.io-client react-scroll-to-bottom react-emoji query-string
+
+
+inject all the code into div with id root
+
+socket.io
+used for:
+    real-time analytics
+    instant messaging
+    binary streaming
+    document collaboration
