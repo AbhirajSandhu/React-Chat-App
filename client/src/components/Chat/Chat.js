@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import queryString from 'query-string';  // this module helps in retreiving data from URL
 import io from 'socket.io-client';
+
 import './Chat.css';
+
+import InfoBar from '../InfoBar/InfoBar';
+import Input from '../Input/Input';
+import Messages from '../Messages/Messages';
 
 let socket;
 
@@ -20,8 +25,8 @@ const Chat = ({ location }) => {
 
         socket = io(ENDPOINT);
 
-        setName(name);
         setRoom(room);
+        setName(name);
 
         socket.emit('join', {name, room}, () => {
 
@@ -38,9 +43,10 @@ const Chat = ({ location }) => {
     // only if these values changes we change our useEffect
 
     useEffect(() => {
-        socket.on('message', (message) => {
-            setMessages([...messages, message]);
-        })
+        socket.on('message', message => {
+            setMessages(messages => [...messages, message]);
+        });
+
     }, [messages]);
     // we want to run this useEffect only when messages array changes
 
@@ -54,17 +60,17 @@ const Chat = ({ location }) => {
         }
     }
 
-    console.log(message, messages);
+    console.log(room);
 
     return (
         <div className="outerContainer">
-            <div className="conatiner">
-                <input value={message} onChange = {(event) => setMessages(event.target.value)}
-                                       onKeyPress = {event => event.key === 'Enter' ? sendMessage(event) : null}
-                />
+            <div className="container">
+                <InfoBar room={room}/>
+                <Messages messages={messages} name={name}/>
+                <Input message={message} setMessage={setMessage} sendMessage={sendMessage}/>
             </div>
         </div>
-    )
+    );
 }
 
 export default Chat;

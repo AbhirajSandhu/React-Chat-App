@@ -9,12 +9,15 @@ const App = () => {
         <Router>
           <div>
             <Switch>
+
               <Route path="/chat">
                 <Chat />
               </Route>
+
               <Route path="/">
                 <Join />
               </Route>
+
             </Switch>
             {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
