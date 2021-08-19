@@ -12,6 +12,10 @@ app.use(router);  // now we can pass it as a middleware
 io.on('connection', (socket) => {
     console.log('New Connection Made!');
 
+    socket.on('join', ({name, room}, callback) => {
+        console.log(name, room);
+    })
+
     socket.console('disconnect', () => {
         console.log('User had Left!')
     })

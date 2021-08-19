@@ -5,11 +5,12 @@ import './Chat.css';
 
 let socket;
 
-const Chat = ({location}) => {
+const Chat = ({ location }) => {
 
-    const [name, setName] = useState(''); // pass in useState initial value of name
+    const [name, setName] = useState('');  // pass in useState initial value of name
     const [room, setRoom] = useState('');
     const ENDPOINT = 'localhost:5000';
+    location = { location };  // wasted lot of time so include this not forget
 
     useEffect(() => {
         const { name, room } = queryString.parse(location.search);
@@ -19,7 +20,16 @@ const Chat = ({location}) => {
         setName(name);
         setRoom(room);
 
-        socket.emit();
+        socket.emit('join', {name, room}, () => {
+
+        });
+        // {name, room} in es6 syntax is same as in older version {name: name, room: room}
+
+        return () => {
+            socket.emit('disconnect');
+            // emit this even when disconnected, the same gets executed in server side index.js
+            socket.off();
+        }
     }, [ENDPOINT, location.search]);
     // we passed an array here with values ENDPOINT and location.search
     // only if these values changes we change our useEffect
