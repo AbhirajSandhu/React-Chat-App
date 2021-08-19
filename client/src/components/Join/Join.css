@@ -26,7 +26,7 @@ html, body {
 }
 
 .joinInput {
-  border-radius: 0;
+  border-radius: 3px;
   padding: 15px 20px;
   width: 100%;
 }
@@ -39,6 +39,7 @@ html, body {
 }
 
 .button {
+  transition: 0.3s;
     color: #fff !important;
     text-transform: uppercase;
     text-decoration: none;
@@ -64,6 +65,14 @@ html, body {
   }
 
 
+}
+
+button:hover {
+  background-color: #51e69493;
+    /* box-shadow: 0 0 5px #ffffffa8,
+    0 0 10px #ffffff73,
+    0 0 15px #ffffff69,
+    0 0 20px #ffffff38; */
 }
 
 button:focus {
