@@ -10,7 +10,6 @@ const Messages = ({ messages, name }) => ( /* name to differentiate b/w users */
         {messages.map((message, i) => <div key={i}><Message message={message} name={name}/></div>)}
     </ScrollToBottom>
   );
-  //  when messages get higer than the height of the container
-  //  so used ScrollToBottom
+  //  when messages get higer than the height of the container so used ScrollToBottom
 
 export default Messages;
